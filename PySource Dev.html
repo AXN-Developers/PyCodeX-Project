@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCodeX | Python + IA + Desarrollo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800;900&family=SF+Pro+Text:wght@300;400;500;600;700&family=SF+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES MEJORADAS CON EFECTOS FUTURISTAS ===== */
+        :root {
+            /* Apple Color Palette Mejorada */
+            --primary-blue: #007AFF;
+            --primary-blue-light: #5AC8FA;
+            --primary-blue-dark: #0056CC;
+            --secondary-purple: #5856D6;
+            --neon-blue: #00D4FF;
+            --neon-purple: #9D4EDD;
+            --electric-pink: #FF2D55;
+            --cyber-green: #00FF9D;
+            --hologram-teal: #00FFD1;
+            
+            /* Gradientes Dinámicos */
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--neon-purple));
+            --gradient-secondary: linear-gradient(135deg, var(--neon-blue), var(--electric-pink));
+            --gradient-hologram: linear-gradient(135deg, 
+                rgba(0, 212, 255, 0.8), 
+                rgba(157, 78, 221, 0.8), 
+                rgba(255, 45, 85, 0.8));
+            
+            /* Efectos de Brillos */
+            --glow-blue: 0 0 20px rgba(0, 122, 255, 0.5);
+            --glow-purple: 0 0 20px rgba(88, 86, 214, 0.5);
+            --glow-neon: 0 0 30px rgba(0, 212, 255, 0.7);
+            --glow-pink: 0 0 20px rgba(255, 45, 85, 0.5);
+            
+            /* Background Colors - Light Mode Mejorado */
+            --system-background: #0A0A0F;
+            --secondary-system-background: #12121A;
+            --tertiary-system-background: #1A1A24;
+            --glass-background: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            /* Text Colors - Light Mode Mejorado */
+            --label: #FFFFFF;
+            --secondary-label: rgba(255, 255, 255, 0.7);
+            --tertiary-label: rgba(255, 255, 255, 0.5);
+            --neon-text: var(--neon-blue);
+            
+            /* Shadows - Light Mode Mejorado */
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 24px 96px rgba(0, 0, 0, 0.6);
+            
+            /* Border Colors Mejorados */
+            --separator: rgba(255, 255, 255, 0.1);
+            --neon-border: rgba(0, 212, 255, 0.3);
+            
+            /* Typography */
+            --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-text: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            
+            /* Spacing System (8px grid) */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-7: 28px;
+            --space-8: 32px;
+            --space-9: 36px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+            --space-24: 96px;
+            
+            /* Border Radius Mejorados */
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --radius-2xl: 28px;
+            --radius-3xl: 32px;
+            --radius-full: 9999px;
+            
+            /* Transiciones Mejoradas */
+            --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-futuristic: cubic-bezier(0.77, 0, 0.175, 1);
+            --transition-fast: 300ms var(--transition-smooth);
+            --transition-normal: 500ms var(--transition-futuristic);
+            --transition-slow: 800ms var(--transition-futuristic);
+            
+            /* Efectos Especiales */
+            --blur-sm: blur(8px);
+            --blur-md: blur(16px);
+            --blur-lg: blur(32px);
+        }
+        
+        /* ===== DARK MODE VARIABLES ===== */
+        .dark-mode {
+            /* Ya estamos en modo oscuro por defecto, ajustamos para más contraste */
+            --system-background: #000000;
+            --secondary-system-background: #0F0F14;
+            --tertiary-system-background: #181820;
+            --glass-background: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            /* Text Colors - Dark Mode Mejorado */
+            --label: #FFFFFF;
+            --secondary-label: rgba(255, 255, 255, 0.8);
+            --tertiary-label: rgba(255, 255, 255, 0.6);
+            
+            /* Efectos de brillo más intensos */
+            --glow-blue: 0 0 25px rgba(0, 122, 255, 0.6);
+            --glow-neon: 0 0 35px rgba(0, 212, 255, 0.8);
+        }
+        
+        /* ===== RESET & BASE STYLES MEJORADOS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            background: var(--system-background);
+        }
+        
+        body {
+            font-family: var(--font-text);
+            font-size: 17px;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            background: var(--system-background);
+            color: var(--label);
+            overflow-x: hidden;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* ===== CANVAS PARA EFECTOS DE PARTÍCULAS ===== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* ===== EFECTOS DE GRADIENTE DINÁMICO ===== */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(88, 86, 214, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            z-index: -2;
+            animation: gradientFloat 20s ease-in-out infinite;
+        }
+        
+        @keyframes gradientFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(2%, 3%) scale(1.05);
+            }
+            50% {
+                transform: translate(-2%, -3%) scale(1.03);
+            }
+            75% {
+                transform: translate(3%, -2%) scale(1.07);
+            }
+        }
+        
+        /* ===== TYPOGRAPHY SYSTEM MEJORADO ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.028em;
+            line-height: 1.08349;
+            color: var(--label);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .display-large {
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(0, 122, 255, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(88, 86, 214, 0.5));
+            }
+        }
+        
+        /* ===== NAVIGATION BAR - FUTURISTA ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            height: 80px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--separator);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 10, 15, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .navbar::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                transparent);
+            opacity: 0.5;
+        }
+        
+        .navbar-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+        }
+        
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .brand-logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-primary);
+            opacity: 0.3;
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .brand-text {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--label);
+        }
+        
+        .brand-accent {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            color: var(--secondary-label);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: -0.016em;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.6s var(--transition-smooth);
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--glass-background);
+            color: var(--label);
+            border-color: var(--neon-blue);
+        }
+        
+        .nav-link.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--glow-blue);
+        }
+        
+        .nav-link.active:hover {
+            background: var(--gradient-secondary);
+        }
+        
+        .nav-badge {
+            position: absolute;
+            top: -4px;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: var(--electric-pink);
+            border-radius: 50%;
+            border: 2px solid var(--system-background);
+            animation: pulseBadge 2s infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .action-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--glass-background);
+            border: 1px solid var(--glass-border);
+            color: var(--label);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+            border-color: var(--neon-blue);
+            box-shadow: var(--glow-blue);
+        }
+        
+        .action-button:active {
+            transform: scale(0.95);
+        }
+        
+        .action-button i {
+            font-size: 18px;
+        }
+        
+        /* ===== HERO SECTION - MEJORADA CON EFECTOS 3D ===== */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 45, 85, 0.15) 0%, transparent 50%);
+            filter: blur(60px);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-24) var(--space-6);
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: var(--blur-md);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-6);
+            animation: float 3s ease-in-out infinite;
+            border: 1px solid var(--glass-border);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .hero-badge i {
+            color: var(--neon-blue);
+        }
+        
+        .hero-badge span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--label);
+        }
+        
+        .hero-title {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-6);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: expandLine 1.5s var(--transition-bounce) 1s forwards;
+        }
+        
+        @keyframes expandLine {
+            to { transform: scaleX(1); }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            line-height: 1.3;
+            color: var(--secondary-label);
+            max-width: 600px;
+            margin-bottom: var(--space-8);
+            font-weight: 500;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+        
+        /* ===== BUTTON SYSTEM - FUTURISTA ===== */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-xl);
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.016em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            isolation: isolate;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.6s var(--transition-smooth);
+        }
+        
+        .button:hover::before {
+            left: 100%;
+        }
+        
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(50, 50);
+                opacity: 0;
+            }
+        }
+        
+        .button-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--glow-blue);
+        }
+        
+        .button-primary:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 122, 255, 0.4), var(--glow-neon);
+        }
+        
+        .button-primary:active {
+            transform: translateY(0);
+        }
+        
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: var(--blur-sm);
+            border: 1px solid var(--glass-border);
+            color: var(--label);
+        }
+        
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--neon-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm), var(--glow-blue);
+        }
+        
+        .button-tertiary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+        
+        .button-tertiary:hover {
+            background: rgba(0, 122, 255, 0.1);
+        }
+        
+        .button-large {
+            padding: var(--space-5) var(--space-10);
+            font-size: 19px;
+            border-radius: var(--radius-2xl);
+        }
+        
+        .button-small {
+            padding: var(--space-2) var(--space-4);
+            font-size: 15px;
+            border-radius: var(--radius-lg);
+        }
+        
+        /* ===== GRID SYSTEM ===== */
+        .grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .grid-auto {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        /* ===== CARDS - EFECTO 3D Y GLASSMORPHISM ===== */
+        .app-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: var(--blur-md);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            height: 100%;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .app-card:hover {
+            transform: translateY(-12px) rotateX(5deg);
+            border-color: var(--neon-blue);
+            box-shadow: 
+                var(--shadow-lg),
+                0 0 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .app-card:hover::before {
+            opacity: 1;
+        }
+        
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
+            background: var(--gradient-primary) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: var(--space-4);
+            box-shadow: 
+                0 8px 32px rgba(0, 122, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .app-badge {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            padding: var(--space-1) var(--space-3);
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .badge-mod {
+            background: var(--gradient-secondary);
+        }
+        
+        .badge-premium {
+            background: var(--gradient-primary);
+        }
+        
+        .badge-python {
+            background: linear-gradient(135deg, #3776AB, #FFD43B);
+        }
+        
+        .badge-ai {
+            background: var(--gradient-secondary);
+        }
+        
+        .badge-tool {
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-pink));
+        }
+        
+        .badge-tutorial {
+            background: linear-gradient(135deg, #FF2D55, #9D4EDD);
+        }
+        
+        /* ===== STATS CARDS - CON EFECTOS NUMÉRICOS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: var(--blur-sm);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            text-align: center;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 
+                var(--shadow-md),
+                inset 0 0 20px rgba(0, 212, 255, 0.1);
+            transform: translateY(-8px);
+        }
+        
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-lg);
+            background: rgba(0, 122, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: var(--space-2);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .stat-number::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+        
+        .stat-card:hover .stat-number::after {
+            transform: scaleX(1);
+        }
+        
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background: linear-gradient(135deg, 
+                var(--system-background) 0%, 
+                var(--secondary-system-background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: var(--blur-md);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            text-align: center;
+            transition: all var(--transition-normal);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-hologram);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 0.5;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+        
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: var(--radius-xl);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+            color: white;
+            font-size: 32px;
+            box-shadow: 
+                0 8px 32px rgba(0, 122, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* ===== IMAGE PREVIEWS ===== */
+        .image-preview {
+            width: 100%;
+            height: 180px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .app-card:hover .image-preview img {
+            transform: scale(1.05);
+        }
+        
+        /* ===== SHOWCASE ===== */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        .showcase-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        .showcase-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        
+        .showcase-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .showcase-card:hover .showcase-image {
+            transform: scale(1.05);
+        }
+        
+        .showcase-content {
+            padding: var(--space-6);
+        }
+        
+        .showcase-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .showcase-category {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .showcase-size {
+            font-size: 13px;
+            color: var(--secondary-label);
+        }
+        
+        /* ===== MODAL SYSTEM ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: var(--blur-lg);
+            -webkit-backdrop-filter: var(--blur-lg);
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-6);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 
+                var(--shadow-xl),
+                0 0 60px rgba(0, 212, 255, 0.2);
+            animation: modalSlideUp 0.4s var(--transition-bounce);
+        }
+        
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--glass-border);
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+        }
+        
+        .modal-body {
+            padding: var(--space-6);
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        
+        .modal-footer {
+            padding: var(--space-6);
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--space-4);
+            background: linear-gradient(
+                to top,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--secondary-system-background);
+            border-top: 1px solid var(--separator);
+            padding: var(--space-24) 0 var(--space-12);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                transparent);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+        }
+        
+        .footer-section h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: var(--space-6);
+            color: var(--label);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+        
+        .footer-link {
+            color: var(--secondary-label);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color var(--transition-fast);
+            position: relative;
+            padding-left: var(--space-3);
+        }
+        
+        .footer-link::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-fast);
+        }
+        
+        .footer-link:hover {
+            color: var(--neon-blue);
+            padding-left: var(--space-6);
+        }
+        
+        .footer-link:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .footer-bottom {
+            padding-top: var(--space-12);
+            border-top: 1px solid var(--separator);
+            text-align: center;
+            color: var(--secondary-label);
+            font-size: 14px;
+        }
+        
+        /* ===== NOTIFICATION SYSTEM ===== */
+        .notification {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: var(--blur-md);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5) var(--space-6);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            z-index: 10002;
+            transform: translateX(150%);
+            transition: transform 0.5s var(--transition-bounce);
+            max-width: 400px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .notification-success .notification-icon {
+            background: var(--gradient-primary);
+        }
+        
+        .notification-error .notification-icon {
+            background: linear-gradient(135deg, var(--electric-pink), #FF3B30);
+        }
+        
+        .notification-warning .notification-icon {
+            background: linear-gradient(135deg, #FF9500, #FFCC00);
+        }
+        
+        /* ===== EFECTOS DE ENTRADA ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition-futuristic),
+                        transform 0.8s var(--transition-futuristic);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ===== PARALLAX ===== */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(157, 78, 221, 0.15) 0%, transparent 50%);
+            will-change: transform;
+        }
+        
+        /* ===== PULSE EFFECT ===== */
+        .pulse-button {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+            }
+        }
+        
+        /* ===== CIRCUIT OVERLAY ===== */
+        .circuit-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 212, 255, 0.1) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(0, 212, 255, 0.1) 50%, transparent 51%);
+            background-size: 20px 20px;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            pointer-events: none;
+        }
+        
+        .app-card:hover .circuit-overlay {
+            opacity: 0.3;
+        }
+        
+        /* ===== LAYOUT CONTAINERS ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .container-wide {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .section {
+            padding: var(--space-24) 0;
+        }
+        
+        .section-tight {
+            padding: var(--space-12) 0;
+        }
+        
+        .section-spacious {
+            padding: var(--space-32) 0;
+        }
+        
+        /* ===== UTILITY CLASSES ===== */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-left { text-align: left; }
+        
+        .mt-1 { margin-top: var(--space-1); }
+        .mt-2 { margin-top: var(--space-2); }
+        .mt-3 { margin-top: var(--space-3); }
+        .mt-4 { margin-top: var(--space-4); }
+        .mt-5 { margin-top: var(--space-5); }
+        .mt-6 { margin-top: var(--space-6); }
+        .mt-8 { margin-top: var(--space-8); }
+        .mt-12 { margin-top: var(--space-12); }
+        
+        .mb-1 { margin-bottom: var(--space-1); }
+        .mb-2 { margin-bottom: var(--space-2); }
+        .mb-3 { margin-bottom: var(--space-3); }
+        .mb-4 { margin-bottom: var(--space-4); }
+        .mb-5 { margin-bottom: var(--space-5); }
+        .mb-6 { margin-bottom: var(--space-6); }
+        .mb-8 { margin-bottom: var(--space-8); }
+        .mb-12 { margin-bottom: var(--space-12); }
+        
+        .py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+        .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+        .py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+        
+        .px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+        .px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+        
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: var(--space-2); }
+        .gap-4 { gap: var(--space-4); }
+        .gap-6 { gap: var(--space-6); }
+        
+        .hidden { display: none; }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-title {
+                font-size: clamp(40px, 6vw, 64px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-button {
+                display: flex;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .hero-title {
+                font-size: clamp(32px, 8vw, 48px);
+            }
+            
+            .section {
+                padding: var(--space-12) 0;
+            }
+            
+            .display-large {
+                font-size: 48px;
+            }
+            
+            .display-medium {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container, .container-wide {
+                padding: 0 var(--space-4);
+            }
+            
+            .button-large {
+                padding: var(--space-4) var(--space-6);
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CANVAS PARA EFECTOS DE PARTÍCULAS -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- FONDO DE GRADIENTES ANIMADOS -->
+    <div class="gradient-bg"></div>
+    
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-content">
+            <a href="#home" class="navbar-brand">
+                <div class="brand-logo">
+                    <i class="fab fa-python"></i>
+                </div>
+                <span class="brand-text"><span class="brand-accent">Py</span>CodeX</span>
+            </a>
+            
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <a href="#home" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Inicio</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#python" class="nav-link">
+                        <i class="fab fa-python"></i>
+                        <span>Proyectos Python</span>
+                        <div class="nav-badge"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#ai" class="nav-link">
+                        <i class="fas fa-robot"></i>
+                        <span>IA & ML</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#tools" class="nav-link">
+                        <i class="fas fa-tools"></i>
+                        <span>Herramientas</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#tutorials" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Tutoriales</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#community" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Comunidad</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="action-button" id="searchButton" aria-label="Buscar">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="action-button" id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="action-button" id="uploadButton" aria-label="Subir proyecto">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+        <div class="hero-background"></div>
+        <div class="parallax-bg"></div>
+        <div class="container hero-content">
+            <div class="hero-badge pulse-button">
+                <i class="fab fa-python"></i>
+                <span>EL FUTURO DEL DESARROLLO PYTHON</span>
+            </div>
+            
+            <h1 class="hero-title display-large">
+                Revolución<br>Python + IA
+            </h1>
+            
+            <p class="hero-subtitle">
+                Plataforma completa para desarrolladores Python. Accede a proyectos open-source, 
+                herramientas profesionales, tutoriales de IA y únete a una comunidad activa de 
+                desarrolladores.
+            </p>
+            
+            <div class="hero-actions">
+                <button class="button button-primary button-large pulse-button" id="exploreButton">
+                    <i class="fas fa-rocket"></i>
+                    Explorar Proyectos
+                </button>
+                <button class="button button-secondary button-large" id="watchDemo">
+                    <i class="fas fa-play-circle"></i>
+                    Ver Tutoriales
+                </button>
+                <button class="button button-tertiary button-large" id="uploadProject">
+                    <i class="fas fa-upload"></i>
+                    Subir Proyecto
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="section section-tight">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="stat-number" id="totalDownloads">45,892</div>
+                    <p class="caption">Proyectos Python</p>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-number" id="activeUsers">12,450</div>
+                    <p class="caption">Modelos IA</p>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="stat-number" id="modApps">287</div>
+                    <p class="caption">Herramientas Dev</p>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="stat-number" id="projects">156</div>
+                    <p class="caption">Tutoriales HD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PYTHON PROJECTS -->
+    <section class="section" id="python">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="headline-large mb-4">Proyectos Python Destacados</h2>
+                <p class="body-large text-secondary-label">Código fuente completo, documentación y casos de uso reales</p>
+            </div>
+            
+            <div class="grid grid-auto gap-6" id="pythonProjectsGrid">
+                <!-- Los proyectos se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- IA SECTION -->
+    <section class="section features-section" id="ai">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="headline-large mb-4">Inteligencia Artificial & Machine Learning</h2>
+                <p class="body-large text-secondary-label">Proyectos avanzados de IA con Python</p>
+            </div>
+            
+            <div class="grid grid-3 gap-6 mb-12">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="title-large mb-4">Deep Learning</h3>
+                    <p class="body-medium text-secondary-label">
+                        Redes neuronales, TensorFlow, PyTorch y modelos de IA avanzados.
+                    </p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="title-large mb-4">Análisis Predictivo</h3>
+                    <p class="body-medium text-secondary-label">
+                        Modelos de predicción, series temporales y análisis de datos con ML.
+                    </p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="title-large mb-4">Computer Vision</h3>
+                    <p class="body-medium text-secondary-label">
+                        Procesamiento de imágenes, detección de objetos y visión por computadora.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-auto gap-6" id="aiProjectsGrid">
+                <!-- Los proyectos de IA se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section class="section" id="tools">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="headline-large mb-4">Herramientas de Desarrollo</h2>
+                <p class="body-large text-secondary-label">Software y utilidades para potenciar tu desarrollo</p>
+            </div>
+            
+            <div class="grid grid-auto gap-6" id="toolsGrid">
+                <!-- Las herramientas se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TUTORIALS SECTION -->
+    <section class="section" id="tutorials">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="headline-large mb-4">Video Tutoriales</h2>
+                <p class="body-large text-secondary-label">Aprende Python e IA con tutoriales paso a paso</p>
+            </div>
+            
+            <div class="grid grid-auto gap-6" id="tutorialsGrid">
+                <!-- Los tutoriales se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section class="section" id="community">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="headline-large mb-4">Comunidad PyCodeX</h2>
+                <p class="body-large text-secondary-label">Únete a nuestra comunidad de desarrolladores</p>
+            </div>
+            
+            <div class="grid grid-3 gap-6">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="title-large mb-4">Discord</h3>
+                    <p class="body-medium text-secondary-label">
+                        Chat en vivo, soporte técnico y networking con otros desarrolladores.
+                    </p>
+                    <button class="button button-primary mt-4 w-full" id="joinDiscord">
+                        Unirse al Discord
+                    </button>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="title-large mb-4">GitHub</h3>
+                    <p class="body-medium text-secondary-label">
+                        Contribuye a proyectos open-source y comparte tu código.
+                    </p>
+                    <button class="button button-secondary mt-4 w-full" id="viewGitHub">
+                        Ver Repositorios
+                    </button>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="title-large mb-4">YouTube</h3>
+                    <p class="body-medium text-secondary-label">
+                        Tutoriales en video, live coding sessions y eventos en vivo.
+                    </p>
+                    <button class="button button-tertiary mt-4 w-full" id="subscribeYouTube">
+                        Suscribirse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPLOAD SECTION -->
+    <section class="section">
+        <div class="container">
+            <div class="app-card py-12">
+                <div class="text-center">
+                    <h2 class="headline-large mb-4">¿Tienes un Proyecto?</h2>
+                    <p class="body-large text-secondary-label mb-8">
+                        Comparte tu código con la comunidad. Sube proyectos Python, tutoriales o herramientas.
+                    </p>
+                    <div class="flex gap-4 justify-center">
+                        <button class="button button-primary button-large" id="uploadProjectMain">
+                            <i class="fas fa-upload"></i>
+                            Subir Proyecto
+                        </button>
+                        <button class="button button-secondary button-large" id="uploadTutorial">
+                            <i class="fas fa-video"></i>
+                            Subir Tutorial
+                        </button>
+                        <button class="button button-tertiary button-large" id="uploadTool">
+                            <i class="fas fa-tools"></i>
+                            Subir Herramienta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>PyCodeX</h3>
+                    <p class="body-small text-secondary-label mb-6">
+                        Plataforma para desarrolladores Python. Proyectos, herramientas, IA y comunidad.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="action-button">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="action-button">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="action-button">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="action-button">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="action-button">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Recursos Python</h3>
+                    <div class="footer-links">
+                        <a href="#python" class="footer-link">Proyectos Python</a>
+                        <a href="#ai" class="footer-link">IA & Machine Learning</a>
+                        <a href="#tools" class="footer-link">Herramientas Dev</a>
+                        <a href="#tutorials" class="footer-link">Video Tutoriales</a>
+                        <a href="#community" class="footer-link">Comunidad</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>IA que Uso</h3>
+                    <div class="footer-links">
+                        <a href="https://openai.com" target="_blank" class="footer-link">OpenAI GPT</a>
+                        <a href="https://gemini.google.com" target="_blank" class="footer-link">Google Gemini</a>
+                        <a href="https://claude.ai" target="_blank" class="footer-link">Claude AI</a>
+                        <a href="https://huggingface.co" target="_blank" class="footer-link">Hugging Face</a>
+                        <a href="https://github.com/features/copilot" target="_blank" class="footer-link">GitHub Copilot</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto & Legal</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Contribuir</a>
+                        <a href="#" class="footer-link">Reportar Bug</a>
+                        <a href="#" class="footer-link">Términos</a>
+                        <a href="#" class="footer-link">Privacidad</a>
+                        <a href="#" class="footer-link">DMCA</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="caption">&copy; 2024 PyCodeX. Community Project.</p>
+                <p class="caption mt-2">El futuro del desarrollo Python comienza aquí...</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL PARA DETALLES -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal" id="modalContent">
+            <!-- Contenido del modal se cargará dinámicamente -->
+        </div>
+    </div>
+
+    <!-- MODAL PARA SUBIR PROYECTO -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal" id="uploadModalContent">
+            <div class="modal-header">
+                <h2 class="title-large">Subir Proyecto a PyCodeX</h2>
+                <button class="action-button" onclick="closeUploadModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadForm" class="space-y-6">
+                    <div class="grid grid-2 gap-6">
+                        <div>
+                            <label class="block mb-2 body-small">Título del Proyecto</label>
+                            <input type="text" id="projectTitle" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="Ej: Mi Proyecto Python" required>
+                        </div>
+                        <div>
+                            <label class="block mb-2 body-small">Categoría</label>
+                            <select id="projectCategory" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="python">Proyecto Python</option>
+                                <option value="ai">IA / Machine Learning</option>
+                                <option value="tool">Herramienta Dev</option>
+                                <option value="tutorial">Tutorial</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-2 body-small">Descripción</label>
+                        <textarea id="projectDescription" rows="3" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="Describe tu proyecto..." required></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-2 body-small">Enlace a GitHub/Descarga</label>
+                        <input type="url" id="projectLink" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="https://github.com/usuario/proyecto" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-2 body-small">URL de Imagen (opcional)</label>
+                        <input type="url" id="projectImage" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="https://ejemplo.com/imagen.jpg">
+                        <p class="caption mt-2 text-secondary-label">Puedes subir imágenes a imgur.com o similar y pegar el enlace aquí</p>
+                    </div>
+                    
+                    <div class="grid grid-2 gap-6">
+                        <div>
+                            <label class="block mb-2 body-small">Versión</label>
+                            <input type="text" id="projectVersion" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="1.0.0">
+                        </div>
+                        <div>
+                            <label class="block mb-2 body-small">Tamaño</label>
+                            <input type="text" id="projectSize" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="50 MB">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-2 body-small">Características (una por línea)</label>
+                        <textarea id="projectFeatures" rows="3" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="Característica 1\nCaracterística 2\nCaracterística 3"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-2 body-small">Tags (separados por comas)</label>
+                        <input type="text" id="projectTags" class="w-full px-4 py-3 bg-glass-background border border-glass-border rounded-lg" placeholder="python, web, automation, ai">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-secondary" onclick="closeUploadModal()">
+                    Cancelar
+                </button>
+                <button class="button button-primary" onclick="submitProject()">
+                    <i class="fas fa-upload"></i>
+                    Subir Proyecto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div>
+            <h4 class="title-small mb-1" id="notificationTitle">Notificación</h4>
+            <p class="body-small text-secondary-label" id="notificationMessage">Mensaje de notificación</p>
+        </div>
+        <button class="action-button" id="closeNotification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script>
+        // ===== BASE DE DATOS COMPLETA CON IMÁGENES =====
+        const database = {
+            pythonProjects: [
+                {
+                    id: 'web-scraper-ai-pro',
+                    title: 'Web Scraper AI Pro',
+                    description: 'Scraper web inteligente con detección automática de patrones, procesamiento NLP y exportación múltiple.',
+                    category: 'Web Automation',
+                    version: '3.1.0',
+                    size: '58 MB',
+                    requirements: 'Python 3.9+',
+                    downloads: 15200,
+                    rating: 4.9,
+                    date: '2024-01-15',
+                    features: [
+                        'Detección inteligente de patrones',
+                        'Procesamiento NLP con spaCy',
+                        'Scraping JavaScript dinámico',
+                        'Exportación JSON/CSV/Excel',
+                        'Dashboard web incluido'
+                    ],
+                    tags: ['web scraping', 'automation', 'python', 'ai', 'nlp'],
+                    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-spider',
+                    color: '#007AFF',
+                    githubLink: 'https://github.com/pycodex/web-scraper-ai',
+                    type: 'python',
+                    badge: 'AI'
+                },
+                {
+                    id: 'fastapi-production-ready',
+                    title: 'FastAPI Production Ready',
+                    description: 'Template completo de FastAPI listo para producción con autenticación, base de datos y tests.',
+                    category: 'Backend',
+                    version: '2.4.0',
+                    size: '42 MB',
+                    requirements: 'Python 3.10+',
+                    downloads: 18400,
+                    rating: 4.9,
+                    date: '2024-01-14',
+                    features: [
+                        'Autenticación JWT avanzada',
+                        'PostgreSQL + Redis configurados',
+                        'Docker Compose incluido',
+                        'Tests con pytest 100%',
+                        'CI/CD GitHub Actions'
+                    ],
+                    tags: ['fastapi', 'backend', 'rest', 'python', 'api'],
+                    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-server',
+                    color: '#009688',
+                    githubLink: 'https://github.com/pycodex/fastapi-template',
+                    type: 'python',
+                    badge: 'PRO'
+                },
+                {
+                    id: 'data-analyzer-advanced',
+                    title: 'Data Analyzer Advanced',
+                    description: 'Herramienta completa de análisis de datos con visualizaciones interactivas y machine learning integrado.',
+                    category: 'Data Science',
+                    version: '2.8.1',
+                    size: '95 MB',
+                    requirements: 'Python 3.10+',
+                    downloads: 12700,
+                    rating: 4.8,
+                    date: '2024-01-13',
+                    features: [
+                        'Visualizaciones interactivas Plotly',
+                        'Análisis estadístico avanzado',
+                        'Integración scikit-learn',
+                        'Dashboard Streamlit',
+                        'Reportes automáticos PDF/HTML'
+                    ],
+                    tags: ['data science', 'analytics', 'python', 'machine learning', 'visualization'],
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-chart-line',
+                    color: '#34C759',
+                    githubLink: 'https://github.com/pycodex/data-analyzer',
+                    type: 'python',
+                    badge: 'ADVANCED'
+                },
+                {
+                    id: 'discord-bot-ai',
+                    title: 'Discord Bot AI',
+                    description: 'Bot de Discord avanzado con integración de IA, comandos slash y sistema de moderación inteligente.',
+                    category: 'Bot Development',
+                    version: '1.5.2',
+                    size: '36 MB',
+                    requirements: 'Python 3.8+',
+                    downloads: 9800,
+                    rating: 4.7,
+                    date: '2024-01-12',
+                    features: [
+                        'Integración OpenAI GPT-4',
+                        'Sistema de moderación automática',
+                        'Comandos slash personalizables',
+                        'Base de datos SQLite/PostgreSQL',
+                        'Dashboard de administración web'
+                    ],
+                    tags: ['discord', 'bot', 'ai', 'python', 'automation', 'chat'],
+                    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&auto=format&fit=crop',
+                    icon: 'fab fa-discord',
+                    color: '#5865F2',
+                    githubLink: 'https://github.com/pycodex/discord-bot-ai',
+                    type: 'python',
+                    badge: 'BOT'
+                },
+                {
+                    id: 'automation-suite-pro',
+                    title: 'Automation Suite Pro',
+                    description: 'Suite completa de automatización con GUI moderna, programador de tareas y scripts predefinidos.',
+                    category: 'Automation',
+                    version: '2.1.3',
+                    size: '45 MB',
+                    requirements: 'Python 3.8+',
+                    downloads: 11500,
+                    rating: 4.8,
+                    date: '2024-01-11',
+                    features: [
+                        'Interfaz gráfica PyQt5 moderna',
+                        'Programador de tareas avanzado',
+                        'Scripts predefinidos listos',
+                        'Registro de actividades detallado',
+                        'Exportación de logs a múltiples formatos'
+                    ],
+                    tags: ['automation', 'gui', 'python', 'productivity', 'tools'],
+                    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-robot',
+                    color: '#FF9500',
+                    githubLink: 'https://github.com/pycodex/automation-suite',
+                    type: 'python',
+                    badge: 'AUTO'
+                },
+                {
+                    id: 'network-monitor-ai',
+                    title: 'Network Monitor AI',
+                    description: 'Monitor de red inteligente con detección de anomalías usando machine learning y alertas en tiempo real.',
+                    category: 'Networking',
+                    version: '1.7.0',
+                    size: '38 MB',
+                    requirements: 'Python 3.9+',
+                    downloads: 6400,
+                    rating: 4.7,
+                    date: '2024-01-10',
+                    features: [
+                        'Detección de anomalías con ML',
+                        'Monitoreo en tiempo real 24/7',
+                        'Alertas inteligentes por email/telegram',
+                        'Dashboard web responsive',
+                        'Reportes PDF automáticos'
+                    ],
+                    tags: ['networking', 'monitoring', 'ai', 'python', 'security', 'analysis'],
+                    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-network-wired',
+                    color: '#5856D6',
+                    githubLink: 'https://github.com/pycodex/network-monitor',
+                    type: 'python',
+                    badge: 'ML'
+                }
+            ],
+            
+            aiProjects: [
+                {
+                    id: 'llm-chatbot-advanced',
+                    title: 'LLM Chatbot Advanced',
+                    description: 'Chatbot de última generación con modelos de lenguaje grandes, contexto extenso y fine-tuning personalizado.',
+                    category: 'Natural Language Processing',
+                    version: '2.0.1',
+                    size: '3.2 GB',
+                    requirements: 'Python 3.10+, GPU 8GB+',
+                    downloads: 9200,
+                    rating: 4.9,
+                    date: '2024-01-15',
+                    features: [
+                        'Soporte múltiples modelos LLM (GPT, Llama, Mistral)',
+                        'Contexto de 16K tokens extensible',
+                        'Fine-tuning personalizado incluido',
+                        'API WebSocket tiempo real',
+                        'Interfaz web React moderna'
+                    ],
+                    tags: ['chatbot', 'llm', 'nlp', 'ai', 'gpt', 'conversational'],
+                    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-comments',
+                    color: '#FF6B6B',
+                    githubLink: 'https://github.com/pycodex/llm-chatbot',
+                    type: 'ai',
+                    badge: 'LLM'
+                },
+                {
+                    id: 'image-generator-stable',
+                    title: 'Stable Diffusion Generator',
+                    description: 'Generador de imágenes artísticas con Stable Diffusion XL y ControlNet para control preciso.',
+                    category: 'Computer Vision',
+                    version: '1.8.3',
+                    size: '4.1 GB',
+                    requirements: 'Python 3.9+, GPU 8GB+',
+                    downloads: 6800,
+                    rating: 4.8,
+                    date: '2024-01-14',
+                    features: [
+                        'Stable Diffusion XL 1.0',
+                        'ControlNet integration completa',
+                        'Text-to-image avanzado',
+                        'Image-to-image transformation',
+                        'Editor integrado con máscaras'
+                    ],
+                    tags: ['stable diffusion', 'ai art', 'computer vision', 'generative', 'images'],
+                    image: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-image',
+                    color: '#9D4EDD',
+                    githubLink: 'https://github.com/pycodex/stable-diffusion-gen',
+                    type: 'ai',
+                    badge: 'SD'
+                },
+                {
+                    id: 'voice-synthesis-pro',
+                    title: 'Voice Synthesis Pro',
+                    description: 'Sistema profesional de síntesis de voz con múltiples voces, emociones controlables y realismo excepcional.',
+                    category: 'Audio AI',
+                    version: '1.3.0',
+                    size: '2.5 GB',
+                    requirements: 'Python 3.10+, GPU recomendado',
+                    downloads: 4200,
+                    rating: 4.8,
+                    date: '2024-01-13',
+                    features: [
+                        'Multi-voice synthesis (30+ voces)',
+                        'Control emocional preciso',
+                        'Real-time generation optimizada',
+                        'API REST completa con docs',
+                        'Web interface incluida'
+                    ],
+                    tags: ['tts', 'voice', 'audio', 'ai', 'synthesis', 'speech'],
+                    image: 'https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-microphone',
+                    color: '#FF2D55',
+                    githubLink: 'https://github.com/pycodex/voice-synthesis',
+                    type: 'ai',
+                    badge: 'TTS'
+                }
+            ],
+            
+            tools: [
+                {
+                    id: 'vscode-python-ultimate',
+                    title: 'VS Code Python Ultimate',
+                    description: 'Configuración profesional de VS Code con todas las extensiones esenciales para desarrollo Python.',
+                    category: 'IDE',
+                    version: '2024.1.0',
+                    size: '180 MB',
+                    requirements: 'VS Code 1.85+',
+                    downloads: 52000,
+                    rating: 4.9,
+                    date: '2024-01-15',
+                    features: [
+                        'Extension pack completo Python',
+                        'Themes profesionales oscuros/claros',
+                        'Snippets personalizados productivos',
+                        'Debugger configurado paso a paso',
+                        'Linting automático con autofix'
+                    ],
+                    tags: ['vscode', 'ide', 'development', 'tools', 'editor'],
+                    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-code',
+                    color: '#007ACC',
+                    downloadLink: 'https://marketplace.visualstudio.com/items?itemName=ms-python.python',
+                    type: 'tool',
+                    badge: 'ESSENTIAL'
+                },
+                {
+                    id: 'python-environment-pro',
+                    title: 'Python Environment Pro',
+                    description: 'Gestor avanzado de entornos virtuales con interfaz gráfica moderna y automatización inteligente.',
+                    category: 'Development',
+                    version: '3.2.0',
+                    size: '32 MB',
+                    requirements: 'Python 3.7+',
+                    downloads: 34500,
+                    rating: 4.8,
+                    date: '2024-01-14',
+                    features: [
+                        'GUI PyQt5 moderna y responsive',
+                        'Auto environment creation inteligente',
+                        'Dependency management avanzado',
+                        'Project templates preconfigurados',
+                        'Export/import envs fácil'
+                    ],
+                    tags: ['environment', 'virtualenv', 'tools', 'python', 'management'],
+                    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-layer-group',
+                    color: '#00FF9D',
+                    downloadLink: 'https://github.com/pycodex/python-env-manager',
+                    type: 'tool',
+                    badge: 'TOOL'
+                },
+                {
+                    id: 'api-client-pro',
+                    title: 'API Client Pro',
+                    description: 'Cliente API profesional con testing avanzado, documentación automática y gestión de colecciones.',
+                    category: 'Testing',
+                    version: '2.5.1',
+                    size: '45 MB',
+                    requirements: 'Python 3.8+',
+                    downloads: 18700,
+                    rating: 4.8,
+                    date: '2024-01-13',
+                    features: [
+                        'API testing avanzado con scripts',
+                        'Documentación automática OpenAPI',
+                        'Collections manager intuitivo',
+                        'Environment variables dinámicas',
+                        'CI/CD integration nativa'
+                    ],
+                    tags: ['api', 'testing', 'tools', 'rest', 'http', 'client'],
+                    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-plug',
+                    color: '#FF2D55',
+                    downloadLink: 'https://github.com/pycodex/api-client',
+                    type: 'tool',
+                    badge: 'API'
+                }
+            ],
+            
+            tutorials: [
+                {
+                    id: 'python-ai-masterclass',
+                    title: 'Python AI Masterclass',
+                    description: 'Curso completo desde cero hasta avanzado de Python e Inteligencia Artificial con proyectos reales.',
+                    category: 'Machine Learning',
+                    duration: '12h 45m',
+                    level: 'Desde Cero',
+                    views: 256000,
+                    rating: 4.9,
+                    date: '2024-01-15',
+                    features: [
+                        'Fundamentos Python para IA desde cero',
+                        'Machine Learning práctico con scikit-learn',
+                        'Deep Learning avanzado con TensorFlow',
+                        'Proyectos reales de principio a fin',
+                        'Deploy a producción paso a paso'
+                    ],
+                    tags: ['python', 'ai', 'machine learning', 'tutorial', 'curso', 'deep learning'],
+                    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-graduation-cap',
+                    color: '#9D4EDD',
+                    youtubeLink: 'https://youtube.com/playlist?list=python-ai-masterclass',
+                    type: 'tutorial',
+                    badge: 'MASTER'
+                },
+                {
+                    id: 'fastapi-production',
+                    title: 'FastAPI en Producción',
+                    description: 'Guía completa para llevar APIs FastAPI a producción con buenas prácticas y herramientas profesionales.',
+                    category: 'Backend',
+                    duration: '6h 30m',
+                    level: 'Intermedio',
+                    views: 128000,
+                    rating: 4.9,
+                    date: '2024-01-14',
+                    features: [
+                        'Autenticación JWT avanzada y segura',
+                        'Docker y Docker Compose configurados',
+                        'Testing completo unit/integration',
+                        'CI/CD con GitHub Actions automatizado',
+                        'Monitorización, logs y métricas'
+                    ],
+                    tags: ['fastapi', 'backend', 'api', 'production', 'tutorial', 'devops'],
+                    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-rocket',
+                    color: '#009688',
+                    youtubeLink: 'https://youtube.com/playlist?list=fastapi-production',
+                    type: 'tutorial',
+                    badge: 'PRO'
+                },
+                {
+                    id: 'web-scraping-pro',
+                    title: 'Web Scraping Pro',
+                    description: 'Técnicas avanzadas de web scraping con Python, Selenium, Scrapy y anti-detection systems.',
+                    category: 'Web Automation',
+                    duration: '5h 15m',
+                    level: 'Intermedio',
+                    views: 187000,
+                    rating: 4.8,
+                    date: '2024-01-13',
+                    features: [
+                        'Scraping JavaScript sites dinámicos',
+                        'Proxies rotativos y anti-bot systems',
+                        'Data cleaning y processing avanzado',
+                        'APIs REST con FastAPI desde datos',
+                        'Deploy a la nube escalable'
+                    ],
+                    tags: ['web scraping', 'automation', 'python', 'tutorial', 'selenium', 'scrapy'],
+                    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&auto=format&fit=crop',
+                    icon: 'fas fa-spider',
+                    color: '#007AFF',
+                    youtubeLink: 'https://youtube.com/playlist?list=web-scraping-pro',
+                    type: 'tutorial',
+                    badge: 'SCRAPING'
+                }
+            ]
+        };
+
+        // ===== SISTEMA DE PARTÍCULAS =====
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particles-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0, radius: 100 };
+                this.init();
+            }
+            
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                
+                this.createParticles();
+                this.animate();
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            handleMouseMove(e) {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            }
+            
+            createParticles() {
+                const particleCount = Math.min(150, Math.floor((window.innerWidth * window.innerHeight) / 8000));
+                
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 2 + 0.5,
+                        speedX: Math.random() * 0.5 - 0.25,
+                        speedY: Math.random() * 0.5 - 0.25,
+                        color: i % 3 === 0 ? 'rgba(0, 212, 255, 0.5)' : 
+                               i % 3 === 1 ? 'rgba(157, 78, 221, 0.4)' : 
+                               'rgba(255, 45, 85, 0.3)'
+                    });
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Actualizar y dibujar partículas
+                this.particles.forEach(particle => {
+                    // Mover partículas
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Rebote en bordes
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+                    
+                    // Interacción con el mouse
+                    const dx = this.mouse.x - particle.x;
+                    const dy = this.mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < this.mouse.radius) {
+                        const angle = Math.atan2(dy, dx);
+                        const force = (this.mouse.radius - distance) / this.mouse.radius;
+                        particle.x -= Math.cos(angle) * force * 2;
+                        particle.y -= Math.sin(angle) * force * 2;
+                    }
+                    
+                    // Dibujar partícula
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Dibujar conexiones
+                    this.particles.forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = `rgba(0, 212, 255, ${0.1 * (1 - distance/100)})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                            this.ctx.stroke();
+                        }
+                    });
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // ===== SISTEMA DE ANIMACIONES =====
+        class ScrollAnimation {
+            constructor() {
+                this.elements = document.querySelectorAll('.fade-in');
+                this.init();
+            }
+            
+            init() {
+                this.checkVisibility();
+                window.addEventListener('scroll', () => this.checkVisibility());
+                window.addEventListener('resize', () => this.checkVisibility());
+            }
+            
+            checkVisibility() {
+                this.elements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight * 0.85;
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+        }
+
+        // ===== EFECTO TILT EN TARJETAS =====
+        class TiltEffect {
+            constructor() {
+                this.cards = document.querySelectorAll('.app-card, .feature-card, .stat-card');
+                this.init();
+            }
+            
+            init() {
+                this.cards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => this.handleMouseMove(e, card));
+                    card.addEventListener('mouseleave', () => this.handleMouseLeave(card));
+                });
+            }
+            
+            handleMouseMove(e, card) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = ((x - centerX) / centerX) * 3;
+                const rotateX = ((centerY - y) / centerY) * 3;
+                
+                card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateZ(10px)
+                `;
+            }
+            
+            handleMouseLeave(card) {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            }
+        }
+
+        // ===== INICIALIZACIÓN =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Iniciar sistemas de efectos
+            new ParticleSystem();
+            new ScrollAnimation();
+            new TiltEffect();
+            
+            // Inicializar la aplicación
+            initializeEnhancedApp();
+        });
+
+        function initializeEnhancedApp() {
+            // Configurar tema
+            setupTheme();
+            
+            // Configurar eventos
+            setupEvents();
+            
+            // Cargar contenido
+            loadAllContent();
+            
+            // Iniciar animaciones
+            startAnimations();
+            
+            // Mostrar notificación de bienvenida
+            setTimeout(() => {
+                showNotification('🐍 ¡Bienvenido a PyCodeX!', 'Explora proyectos Python, IA y herramientas de desarrollo');
+            }, 1000);
+        }
+
+        // ===== TEMA =====
+        function setupTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Verificar preferencia guardada
+            const savedTheme = localStorage.getItem('pycodex-theme');
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggle.style.color = '#FFD43B';
+            }
+            
+            // Toggle del tema
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    this.innerHTML = '<i class="fas fa-sun"></i>';
+                    this.style.color = '#FFD43B';
+                    localStorage.setItem('pycodex-theme', 'dark');
+                    showNotification('🌙 Modo Oscuro', 'Activada la experiencia nocturna futurista');
+                } else {
+                    this.innerHTML = '<i class="fas fa-moon"></i>';
+                    this.style.color = '';
+                    localStorage.setItem('pycodex-theme', 'light');
+                    showNotification('☀️ Modo Claro', 'Activada la experiencia diurna');
+                }
+            });
+        }
+
+        // ===== EVENTOS =====
+        function setupEvents() {
+            // Scroll del navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Botón explorar
+            document.getElementById('exploreButton').addEventListener('click', function() {
+                document.getElementById('python').scrollIntoView({ behavior: 'smooth' });
+                showNotification('🚀 Explorando', 'Descubre proyectos Python con efectos futuristas');
+            });
+
+            // Botón ver tutoriales
+            document.getElementById('watchDemo').addEventListener('click', function() {
+                document.getElementById('tutorials').scrollIntoView({ behavior: 'smooth' });
+                showNotification('🎬 Tutoriales', 'Cargando videos educativos de Python y IA');
+            });
+
+            // Botón subir proyecto
+            document.getElementById('uploadProject').addEventListener('click', function() {
+                openUploadModal();
+            });
+
+            document.getElementById('uploadProjectMain').addEventListener('click', function() {
+                openUploadModal();
+            });
+
+            document.getElementById('uploadTutorial').addEventListener('click', function() {
+                openUploadModal('tutorial');
+            });
+
+            document.getElementById('uploadTool').addEventListener('click', function() {
+                openUploadModal('tool');
+            });
+
+            // Botones comunidad
+            document.getElementById('joinDiscord').addEventListener('click', function() {
+                window.open('https://discord.gg/python', '_blank');
+                showNotification('👥 Discord', 'Uniéndote a la comunidad Python...');
+            });
+
+            document.getElementById('viewGitHub').addEventListener('click', function() {
+                window.open('https://github.com/pycodex', '_blank');
+                showNotification('🐙 GitHub', 'Abriendo organización en GitHub...');
+            });
+
+            document.getElementById('subscribeYouTube').addEventListener('click', function() {
+                window.open('https://youtube.com/pycodex', '_blank');
+                showNotification('📺 YouTube', 'Suscribiéndote al canal...');
+            });
+
+            // Botón buscar
+            document.getElementById('searchButton').addEventListener('click', function() {
+                showNotification('🔍 Búsqueda', 'La función de búsqueda avanzada estará disponible pronto');
+            });
+
+            // Botón upload en navbar
+            document.getElementById('uploadButton').addEventListener('click', function() {
+                openUploadModal();
+            });
+
+            // Navegación activa
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    
+                    // Remover active de todos
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    // Agregar active al clickeado
+                    this.classList.add('active');
+                    
+                    // Scroll suave
+                    if (target.startsWith('#')) {
+                        const section = document.querySelector(target);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Cerrar notificación
+            document.getElementById('closeNotification').addEventListener('click', function() {
+                document.getElementById('notification').classList.remove('show');
+            });
+
+            // Cerrar modal al hacer clic fuera
+            document.getElementById('detailModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            document.getElementById('uploadModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeUploadModal();
+                }
+            });
+        }
+
+        // ===== CARGAR CONTENIDO =====
+        function loadAllContent() {
+            loadPythonProjects();
+            loadAIProjects();
+            loadTools();
+            loadTutorials();
+        }
+
+        function loadPythonProjects() {
+            const grid = document.getElementById('pythonProjectsGrid');
+            grid.innerHTML = '';
+            database.pythonProjects.forEach(project => {
+                const card = createCard(project);
+                grid.appendChild(card);
+            });
+        }
+
+        function loadAIProjects() {
+            const grid = document.getElementById('aiProjectsGrid');
+            grid.innerHTML = '';
+            database.aiProjects.forEach(project => {
+                const card = createCard(project);
+                grid.appendChild(card);
+            });
+        }
+
+        function loadTools() {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '';
+            database.tools.forEach(tool => {
+                const card = createCard(tool);
+                grid.appendChild(card);
+            });
+        }
+
+        function loadTutorials() {
+            const grid = document.getElementById('tutorialsGrid');
+            grid.innerHTML = '';
+            database.tutorials.forEach(tutorial => {
+                const card = createCard(tutorial);
+                grid.appendChild(card);
+            });
+        }
+
+        function createCard(item) {
+            const isTutorial = item.type === 'tutorial';
+            const card = document.createElement('div');
+            card.className = 'app-card fade-in';
+            card.dataset.id = item.id;
+            card.dataset.type = item.type;
+            
+            // Añadir overlay de circuito
+            const circuitOverlay = document.createElement('div');
+            circuitOverlay.className = 'circuit-overlay';
+            card.appendChild(circuitOverlay);
+            
+            const itemDate = new Date(item.date);
+            const formattedDate = itemDate.toLocaleDateString('es-ES', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            
+            // Verificar si tiene imagen
+            const hasImage = item.image && item.image.startsWith('http');
+            
+            card.innerHTML = `
+                ${hasImage ? `
+                    <div class="image-preview">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    </div>
+                ` : `
+                    <div class="app-icon">
+                        <i class="${item.icon}"></i>
+                    </div>
+                `}
+                
+                ${item.badge ? `<span class="app-badge ${getBadgeClass(item.type)}">${item.badge}</span>` : ''}
+                
+                <h3 class="title-medium mb-3">${item.title}</h3>
+                <p class="body-small text-secondary-label mb-4">${item.description}</p>
+                
+                <div class="flex items-center justify-between mb-4">
+                    <div class="caption">${item.category}</div>
+                    <div class="caption">${isTutorial ? item.duration : item.size}</div>
+                </div>
+                
+                <div class="card-footer mt-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="caption">
+                                <i class="fas fa-${isTutorial ? 'eye' : 'download'}"></i> 
+                                ${formatNumber(isTutorial ? item.views : item.downloads)}
+                            </span>
+                            <span class="caption">
+                                <i class="fas fa-star"></i> ${item.rating}
+                            </span>
+                        </div>
+                        <button class="button button-primary button-small view-button" data-id="${item.id}" data-type="${item.type}">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Eventos
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.view-button')) {
+                    openModal(item);
+                }
+            });
+            
+            const viewBtn = card.querySelector('.view-button');
+            viewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openModal(item);
+            });
+            
+            return card;
+        }
+
+        function getBadgeClass(type) {
+            switch(type) {
+                case 'python': return 'badge-python';
+                case 'ai': return 'badge-ai';
+                case 'tool': return 'badge-tool';
+                case 'tutorial': return 'badge-tutorial';
+                default: return 'badge-mod';
+            }
+        }
+
+        // ===== MODAL PARA DETALLES =====
+        function openModal(item) {
+            const modal = document.getElementById('detailModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            const isTutorial = item.type === 'tutorial';
+            const hasImage = item.image && item.image.startsWith('http');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2 class="title-large">${item.title}</h2>
+                    <button class="action-button" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${hasImage ? `
+                        <div class="image-preview mb-6" style="height: 200px;">
+                            <img src="${item.image}" alt="${item.title}">
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="app-icon" style="width: 80px; height: 80px; background: var(--gradient-primary);">
+                            <i class="${item.icon}"></i>
+                        </div>
+                        <div>
+                            <h3 class="title-medium mb-2">${item.title}</h3>
+                            <p class="body-medium text-secondary-label">${item.description}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="title-small mb-4">Información</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">Categoría:</span>
+                                    <span class="body-small font-semibold">${item.category}</span>
+                                </div>
+                                ${item.version ? `
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">Versión:</span>
+                                    <span class="body-small font-semibold">${item.version}</span>
+                                </div>
+                                ` : ''}
+                                ${item.duration ? `
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">Duración:</span>
+                                    <span class="body-small font-semibold">${item.duration}</span>
+                                </div>
+                                ` : ''}
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">Tamaño:</span>
+                                    <span class="body-small font-semibold">${item.size || 'N/A'}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">${isTutorial ? 'Vistas' : 'Descargas'}:</span>
+                                    <span class="body-small font-semibold">${formatNumber(isTutorial ? item.views : item.downloads)}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="body-small text-secondary-label">Rating:</span>
+                                    <span class="body-small font-semibold">${item.rating}/5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="title-small mb-4">Características</h4>
+                            <ul class="space-y-2">
+                                ${item.features.map(feature => `
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check" style="color: var(--neon-blue); font-size: 12px;"></i>
+                                        <span class="body-small">${feature}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="title-small mb-4">Tags</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${item.tags.map(tag => `
+                                <span class="px-3 py-1 bg-glass-background rounded-full body-small">${tag}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    ${!isTutorial && item.githubLink ? `
+                        <div class="mb-8">
+                            <h4 class="title-small mb-4">Ejemplo de Código</h4>
+                            <div class="code-preview bg-glass-background rounded-lg overflow-hidden">
+                                <div class="code-header px-4 py-3 border-b border-glass-border flex justify-between items-center">
+                                    <span class="code-title body-small">main.py</span>
+                                    <div class="code-actions">
+                                        <button class="action-button" onclick="copyCode(this)">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="code-body p-4">
+                                    <pre class="body-small" style="font-family: var(--font-mono); color: var(--neon-blue);">import requests
+import json
+from typing import Dict, Any
+
+class ${item.title.replace(/ /g, '')}:
+    """${item.description}"""
+    
+    def __init__(self, config: Dict[str, Any] = None):
+        self.config = config or {}
+        self.session = requests.Session()
+        
+    def setup(self):
+        """Configuración inicial"""
+        print(f"Iniciando {self.__class__.__name__}...")
+        
+    def run(self):
+        """Ejecutar la aplicación"""
+        try:
+            self.setup()
+            print("Ejecutando proyecto...")
+            return True
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+
+if __name__ == "__main__":
+    app = ${item.title.replace(/ /g, '')}()
+    success = app.run()
+    print(f"Proyecto ejecutado: {'Éxito' if success else 'Falló'}")</pre>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="modal-footer">
+                    <button class="button button-secondary" onclick="closeModal()">
+                        Cerrar
+                    </button>
+                    ${isTutorial ? `
+                        <a href="${item.youtubeLink}" target="_blank" class="button button-primary">
+                            <i class="fas fa-play"></i>
+                            Ver en YouTube
+                        </a>
+                    ` : `
+                        <a href="${item.githubLink || item.downloadLink}" target="_blank" class="button button-primary">
+                            <i class="${item.githubLink ? 'fab fa-github' : 'fas fa-download'}"></i>
+                            ${item.githubLink ? 'Ver Código' : 'Descargar'}
+                        </a>
+                    `}
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== MODAL PARA SUBIR PROYECTOS =====
+        function openUploadModal(presetType = null) {
+            const modal = document.getElementById('uploadModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (presetType) {
+                document.getElementById('projectCategory').value = presetType;
+            }
+        }
+
+        function closeUploadModal() {
+            const modal = document.getElementById('uploadModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('uploadForm').reset();
+        }
+
+        function submitProject() {
+            const title = document.getElementById('projectTitle').value.trim();
+            const category = document.getElementById('projectCategory').value;
+            const description = document.getElementById('projectDescription').value.trim();
+            const link = document.getElementById('projectLink').value.trim();
+            const image = document.getElementById('projectImage').value.trim();
+            const version = document.getElementById('projectVersion').value.trim() || '1.0.0';
+            const size = document.getElementById('projectSize').value.trim() || '10 MB';
+            const featuresText = document.getElementById('projectFeatures').value.trim();
+            const tagsText = document.getElementById('projectTags').value.trim();
+            
+            if (!title || !category || !description || !link) {
+                showNotification('⚠️ Error', 'Por favor completa los campos obligatorios');
+                return;
+            }
+            
+            const features = featuresText ? featuresText.split('\n').filter(f => f.trim()) : ['Característica 1', 'Característica 2'];
+            const tags = tagsText ? tagsText.split(',').map(t => t.trim()) : [category, 'python'];
+            
+            const newProject = {
+                id: 'user-' + Date.now(),
+                title: title,
+                description: description,
+                category: category === 'python' ? 'Python Project' : 
+                         category === 'ai' ? 'AI/ML Project' :
+                         category === 'tool' ? 'Development Tool' : 'Tutorial',
+                version: version,
+                size: size,
+                requirements: 'Python 3.8+',
+                downloads: 0,
+                rating: 4.5,
+                date: new Date().toISOString().split('T')[0],
+                features: features,
+                tags: tags,
+                image: image || 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop',
+                icon: category === 'python' ? 'fab fa-python' :
+                      category === 'ai' ? 'fas fa-robot' :
+                      category === 'tool' ? 'fas fa-tools' : 'fas fa-video',
+                color: '#007AFF',
+                githubLink: link.startsWith('https://github.com') ? link : null,
+                downloadLink: !link.startsWith('https://github.com') ? link : null,
+                type: category,
+                badge: 'NEW'
+            };
+            
+            // Añadir a la base de datos
+            if (category === 'python') {
+                database.pythonProjects.unshift(newProject);
+            } else if (category === 'ai') {
+                database.aiProjects.unshift(newProject);
+            } else if (category === 'tool') {
+                database.tools.unshift(newProject);
+            } else {
+                database.tutorials.unshift(newProject);
+            }
+            
+            // Recargar la sección correspondiente
+            if (category === 'python') {
+                loadPythonProjects();
+            } else if (category === 'ai') {
+                loadAIProjects();
+            } else if (category === 'tool') {
+                loadTools();
+            } else {
+                loadTutorials();
+            }
+            
+            closeUploadModal();
+            showNotification('🎉 ¡Proyecto Subido!', 'Tu proyecto ha sido añadido a PyCodeX');
+            
+            // Scroll a la sección correspondiente
+            setTimeout(() => {
+                const sectionId = category === 'python' ? 'python' :
+                                 category === 'ai' ? 'ai' :
+                                 category === 'tool' ? 'tools' : 'tutorials';
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        function copyCode(button) {
+            const code = button.closest('.code-preview').querySelector('pre').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.color = 'var(--neon-blue)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    button.style.color = '';
+                }, 2000);
+                
+                showNotification('📋 Código Copiado', 'El código ha sido copiado al portapapeles');
+            });
+        }
+
+        // ===== NOTIFICACIONES =====
+        function showNotification(title, message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationTitle').textContent = title;
+            document.getElementById('notificationMessage').textContent = message;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // ===== ANIMACIONES =====
+        function startAnimations() {
+            animateStats();
+            
+            // Observer para animaciones de entrada
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.app-card, .feature-card, .stat-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s var(--transition-futuristic), transform 0.6s var(--transition-futuristic)';
+                observer.observe(el);
+            });
+        }
+
+        function animateStats() {
+            const stats = [
+                { id: 'totalDownloads', target: 45892 },
+                { id: 'activeUsers', target: 12450 },
+                { id: 'modApps', target: 287 },
+                { id: 'projects', target: 156 }
+            ];
+            
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                let current = 0;
+                const increment = stat.target / 60;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= stat.target) {
+                        element.textContent = formatNumber(stat.target);
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = formatNumber(Math.floor(current));
+                    }
+                }, 20);
+            });
+        }
+
+        // ===== UTILIDADES =====
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            }
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toLocaleString();
+        }
+
+        // Hacer funciones globales para eventos onclick
+        window.closeModal = closeModal;
+        window.closeUploadModal = closeUploadModal;
+        window.copyCode = copyCode;
+        window.submitProject = submitProject;
+        window.openUploadModal = openUploadModal;
+    </script>
+</body>
+</html>
